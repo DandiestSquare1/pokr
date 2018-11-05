@@ -3,7 +3,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 // import { linkTo } from '@storybook/addon-links';
-import { withKnobs, text, radios } from '@storybook/addon-knobs'
+import { withKnobs, text, radios, boolean } from '@storybook/addon-knobs'
 
 import { Suit } from '../model/poker'
 import Card from '../components/Card'
@@ -21,5 +21,5 @@ storiesOf('Card', module)
       ['small', 'medium', 'large'],
       'medium'
     )
-    return <Card rank={text('Rank', 'A')} suit={suitKnob} size={sizeKnob}/>
+    return <Card rank={text('Rank', 'A')} suit={suitKnob} size={sizeKnob} facedown={boolean('Facedown', false)}/>
   })

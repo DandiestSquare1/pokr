@@ -8,10 +8,11 @@ import { Suit, SuitPropType, RankPropType } from '../model/poker'
 
 class Card extends PureComponent {
   static propTypes = {
-    suit: SuitPropType.isRequired,
-    rank: RankPropType.isRequired,
+    suit: SuitPropType,
+    rank: RankPropType,
     elevation: PropTypes.number,
-    size: PropTypes.oneOf('small', 'medium', 'large')
+    size: PropTypes.oneOf('small', 'medium', 'large'),
+    facedown: PropTypes.boolean
   }
 
   static defaultProps = {
@@ -19,23 +20,28 @@ class Card extends PureComponent {
   }
 
   render() {
-    const { rank, suit, elevation, size } = this.props
-    console.log(size)
+    const { rank, suit, elevation, size, facedown } = this.props
+    console.log(styles.backside)
     const classes = classNames({
       [styles.root]: true,
       [styles.small]: size === 'small',
       [styles.medium]: size === 'medium',
       [styles.large]: size === 'large',
-      [styles.heart]: suit === Suit.HEART,
-      [styles.diamond]: suit === Suit.DIAMOND,
-      [styles.club]: suit === Suit.CLUB,
-      [styles.spade]: suit === Suit.SPADE
+      [styles.heart]: !facedown && suit === Suit.HEART,
+      [styles.diamond]: !facedown && suit === Suit.DIAMOND,
+      [styles.club]: !facedown && suit === Suit.CLUB,
+      [styles.spade]: !facedown && suit === Suit.SPADE,
+      [styles.facedown]: facedown
     })
     return (
       <BpCard className={classes} interactive elevation={elevation}>
-        <span>
-          {rank}
-        </span>
+        {facedown ? (
+          <div className={styles.backside} />
+        ) : (
+          <span>
+            {rank}
+          </span>
+        )}
       </BpCard>
     )
   }
