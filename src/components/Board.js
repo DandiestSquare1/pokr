@@ -9,13 +9,19 @@ import styles from './Board.module.sass'
 class Board extends PureComponent {
   static propTypes = {
     cards: PropTypes.arrayOf(CardPropType),
-    size: PropTypes.oneOf(['small', 'medium', 'large'])
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
+    max: PropTypes.number
+  }
+
+  static defaultProps = {
+    max: 5,
+    size: 'medium'
   }
 
   render() {
-    const { cards, size } = this.props
+    const { cards, size, max } = this.props
     const cardsLength = cards ? cards.length : 0
-    const placeholders = cards ? 5 - cardsLength : 5
+    const placeholders = cards ? max - cardsLength : max
     return (
       <div className={styles.root}>
         {cards && cards.map((card, index) => <Card key={index} size={size} rank={card.rank} suit={card.suit} />)}

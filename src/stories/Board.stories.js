@@ -41,5 +41,5 @@ storiesOf('Board', module)
       },
       2
     )
-    return <Board size={sizeKnob} cards={cards.slice(0, visibleCardsKnob)}/>
+    return <Board size={sizeKnob} cards={cards.slice(0, visibleCardsKnob)} max={number('Max no of cards', 5)}/>
   })
