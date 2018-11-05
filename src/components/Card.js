@@ -1,6 +1,7 @@
-import React, { PureComponent } from 'react'
+import React, { PureComponent, Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { Card as BpCard, Elevation, Classes } from '@blueprintjs/core'
+import Tilt from 'react-tilt'
 import classNames from 'classnames'
 
 import styles from './Card.module.sass'
@@ -12,8 +13,9 @@ class Card extends PureComponent {
     rank: RankPropType,
     elevation: PropTypes.number,
     size: PropTypes.oneOf('small', 'medium', 'large'),
-    facedown: PropTypes.boolean,
-    placeholder: PropTypes.boolean
+    facedown: PropTypes.bool,
+    placeholder: PropTypes.bool,
+    disableTilt: PropTypes.bool
   }
 
   static defaultProps = {
@@ -21,7 +23,7 @@ class Card extends PureComponent {
   }
 
   render() {
-    const { rank, suit, elevation, size, facedown, placeholder } = this.props
+    const { rank, suit, elevation, size, facedown, placeholder, disableTilt } = this.props
     const classes = classNames({
       [styles.root]: true,
       [styles.small]: size === 'small',
@@ -32,18 +34,20 @@ class Card extends PureComponent {
       [styles.club]: !facedown && suit === Suit.CLUB,
       [styles.spade]: !facedown && suit === Suit.SPADE,
       [styles.facedown]: facedown,
-      [Classes.SKELETON]: placeholder
+      [Classes.SKELETON]: placeholder,
     })
     return (
-      <BpCard className={classes} interactive elevation={elevation}>
-        {facedown ? (
-          <div className={styles.backside} />
-        ) : (
-          <span>
-            {rank}
-          </span>
-        )}
-      </BpCard>
+      <Tilt className={styles.tilt}>
+        <BpCard className={classes} interactive elevation={elevation}>
+          {facedown ? (
+            <div className={styles.backside} />
+          ) : (
+            <span>
+              {rank}
+            </span>
+          )}
+        </BpCard>
+      </Tilt>
     )
   }
 }

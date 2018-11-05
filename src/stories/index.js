@@ -27,6 +27,7 @@ storiesOf('Card', module)
       size={sizeKnob}
       facedown={boolean('Facedown', false)}
       placeholder={boolean('Placeholder', false)}
+      disableTilt={boolean('Disable tilt effect', false)}
     />
   })
   .add('Facedown', () => <Card facedown />)
