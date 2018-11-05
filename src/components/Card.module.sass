@@ -5,12 +5,20 @@ $spade-color: black
 $diamond-color: blue
 
 $background-color: white
-$card-width: 100px
-$card-height: $card-width * 1.5&
+$card-base-width: 100px
+$card-base-font-size: 32pt
+$card-base-padding: 10px
 $background-angle: 124deg
 
 @function card-background($color)
-  @return linear-gradient($background-angle, $background-color 49%, $color 50%)
+  @return linear-gradient($background-angle, $background-color 50%, $color 50%)
+
+=size($ratio)
+  width: $card-base-width * $ratio
+  height: $card-base-width * 1.5 * $ratio
+  padding: $card-base-padding * $ratio
+  font-size: $card-base-font-size * $ratio
+
 
 =suit($color)
   color: $color
@@ -18,12 +26,16 @@ $background-angle: 124deg
 
 .root
   display: inline-block
-  width: $card-width
-  height: $card-height
-  padding: 1em
+  +size(1)
 
-.rank
-  font-size: 24pt
+.medium
+  +size(1)
+
+.small
+  +size(.6)
+
+.large
+  +size(2.5)
 
 .heart
   +suit($heart-color)

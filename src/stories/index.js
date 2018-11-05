@@ -16,5 +16,10 @@ storiesOf('Card', module)
       Suit,
       Suit.HEART
     )
-    return <Card rank={text('Rank', 'A')} suit={suitKnob} />
+    const sizeKnob = radios(
+      'Size',
+      ['small', 'medium', 'large'],
+      'medium'
+    )
+    return <Card rank={text('Rank', 'A')} suit={suitKnob} size={sizeKnob}/>
   })
