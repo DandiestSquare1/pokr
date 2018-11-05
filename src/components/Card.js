@@ -42,9 +42,7 @@ class Card extends PureComponent {
         {facedown ? (
           <div className={styles.backside} />
         ) : (
-          <span>
-            {rank}
-          </span>
+          rank || '?' // this somehow fixes a weird alignment bug
         )}
       </BpCard>
     )

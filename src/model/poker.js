@@ -7,7 +7,7 @@ export const Suit = {
   DIAMOND: 'diamond'
 }
 
-export const SuitPropType = PropTypes.oneOf([Suit.HEART, Suit.SPADE, Suit.CLUB, Suit.DIAMON])
+export const SuitPropType = PropTypes.oneOf([Suit.HEART, Suit.SPADE, Suit.CLUB, Suit.DIAMOND])
 
 export const RankPropType = PropTypes.string
 
