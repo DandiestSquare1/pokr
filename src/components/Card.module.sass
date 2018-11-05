@@ -1,0 +1,38 @@
+
+$heart-color: red
+$club-color: green
+$spade-color: black
+$diamond-color: blue
+
+$background-color: white
+$card-width: 100px
+$card-height: $card-width * 1.5&
+$background-angle: 124deg
+
+@function card-background($color)
+  @return linear-gradient($background-angle, $background-color 49%, $color 50%)
+
+=suit($color)
+  color: $color
+  background: card-background($color)
+
+.root
+  display: inline-block
+  width: $card-width
+  height: $card-height
+  padding: 1em
+
+.rank
+  font-size: 24pt
+
+.heart
+  +suit($heart-color)
+
+.club
+  +suit($club-color)
+
+.spade
+  +suit($spade-color)
+
+.diamond
+  +suit($diamond-color)
