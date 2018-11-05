@@ -12,7 +12,7 @@ class Card extends PureComponent {
     suit: SuitPropType,
     rank: RankPropType,
     elevation: PropTypes.number,
-    size: PropTypes.oneOf('small', 'medium', 'large'),
+    size: PropTypes.oneOf(['small', 'medium', 'large']),
     facedown: PropTypes.bool,
     placeholder: PropTypes.bool,
     disableTilt: PropTypes.bool
