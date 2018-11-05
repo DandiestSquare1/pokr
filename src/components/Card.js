@@ -36,19 +36,22 @@ class Card extends PureComponent {
       [styles.facedown]: facedown,
       [Classes.SKELETON]: placeholder,
     })
-    return (
-      <Tilt className={styles.tilt}>
-        <BpCard className={classes} interactive elevation={elevation}>
-          {facedown ? (
-            <div className={styles.backside} />
-          ) : (
-            <span>
-              {rank}
-            </span>
-          )}
-        </BpCard>
-      </Tilt>
+
+    const card = (
+      <BpCard className={classes} interactive elevation={elevation}>
+        {facedown ? (
+          <div className={styles.backside} />
+        ) : (
+          <span>
+            {rank}
+          </span>
+        )}
+      </BpCard>
     )
+
+    return (placeholder || disableTilt)
+      ? card
+      : <Tilt className={styles.tilt}>{card}</Tilt>
   }
 }
 
