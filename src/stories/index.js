@@ -21,5 +21,13 @@ storiesOf('Card', module)
       ['small', 'medium', 'large'],
       'medium'
     )
-    return <Card rank={text('Rank', 'A')} suit={suitKnob} size={sizeKnob} facedown={boolean('Facedown', false)}/>
+    return <Card
+      rank={text('Rank', 'A')}
+      suit={suitKnob}
+      size={sizeKnob}
+      facedown={boolean('Facedown', false)}
+      placeholder={boolean('Placeholder', false)}
+    />
   })
+  .add('Facedown', () => <Card facedown />)
+  .add('Placeholder', () => <Card placeholder />)
