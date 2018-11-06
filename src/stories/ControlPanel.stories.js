@@ -7,4 +7,4 @@ import ControlPanel from '../components/ControlPanel'
 
 storiesOf('ControlPanel', module)
   .addDecorator(withKnobs)
-  .add('Default', () => <ControlPanel isOpener={boolean('Is opener', true)}/>)
+  .add('Default', () => <ControlPanel isOpener={boolean('Is opener', true)} min={4} max={200} step={1}/>)
