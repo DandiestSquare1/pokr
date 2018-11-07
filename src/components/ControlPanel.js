@@ -39,7 +39,9 @@ class ControlPanel extends Component {
     if (!value.trim()) {
       this.setState({ sliderValue: this.props.min })
     } else {
-      this.setState({ sliderValue: parseFloat(value, 10) })
+      this.setState({
+        sliderValue: Math.min(this.props.max, parseFloat(value, 10))
+      })
     }
     this.setState({ inputValue: event.currentTarget.value })
   }
@@ -86,15 +88,16 @@ class ControlPanel extends Component {
             value={inputValue}
             onChange={this.handleInputChange}
           />
-          <Slider
-            className={styles.betSlider}
-            min={min}
-            max={max}
-            stepSize={step}
-            labelRenderer={false}
-            value={sliderValue}
-            onChange={this.handleSliderChange}
-          />
+          <div className={styles.betSlider}>
+            <Slider
+              min={min}
+              max={max}
+              stepSize={step}
+              labelRenderer={false}
+              value={sliderValue}
+              onChange={this.handleSliderChange}
+            />
+          </div>
         </div>
       </Card>
     )
