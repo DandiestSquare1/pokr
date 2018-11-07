@@ -33,13 +33,13 @@ storiesOf('Board', module)
     )
     const visibleCardsKnob = number(
       'Cards',
+      2,
       {
         range: true,
         min: 0,
         max: 5,
         step: 1
-      },
-      2
+      }
     )
     return <Board size={sizeKnob} cards={cards.slice(0, visibleCardsKnob)} max={number('Max no of cards', 5)}/>
   })
