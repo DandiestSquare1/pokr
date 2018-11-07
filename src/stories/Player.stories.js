@@ -17,3 +17,10 @@ storiesOf('Player', module)
       />
     )
   })
+  .add('BobShark', () => (
+    <Player
+      username='BobShark'
+      chips={257.8}
+      currency='€'
+    />
+  ))
