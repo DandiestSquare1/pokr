@@ -11,7 +11,20 @@ class ControlPanel extends Component {
     isOpener: PropTypes.bool,
     min: PropTypes.number.isRequired,
     max: PropTypes.number.isRequired,
-    step: PropTypes.number.isRequired
+    step: PropTypes.number.isRequired,
+
+    // called when the FOLD button is clicked
+    onFold: PropTypes.func,
+    // called when the CHECK/CALL button is clicked
+    onPassiveAction: PropTypes.func,
+    // called when the BET/RAISE button is clicked, first param is the bet size
+    onAggressiveAction: PropTypes.func
+  }
+
+  static defaultProps = {
+    onFold: () => console.log('No onFold prop'),
+    onPassiveAction: () => console.log('No onPassiveAction'),
+    onAggressiveAction: () => console.log('No onAggressiveAction')
   }
 
   state = {
@@ -35,15 +48,32 @@ class ControlPanel extends Component {
     this.setState({ sliderValue: value, inputValue: value })
   }
 
+  handleFoldClick = event => {
+    this.props.onFold()
+  }
+
+  handlePassiveClick = event => {
+    this.props.onPassiveAction()
+  }
+
+  // called when the aggressive action button (bet or raise) is clicked
+  handleAggressiveClick = event => {
+    this.props.onAggressiveAction(this.state.sliderValue)
+  }
+
   render() {
-    const { isOpener, min, max, step } = this.props
+    const { isOpener, min, max, step, onFold, onPassiveAction } = this.props
     const { inputValue, sliderValue } = this.state
     return (
       <Card className={styles.root}>
         <div className={styles.actionPanel}>
-          <ControlButton text='Fold' intent={isOpener ? 'warning' : undefined}/>
-          <ControlButton text={isOpener ? 'Check' : 'Call'}/>
-          <ControlButton text={isOpener ? 'Bet' : 'Raise'}/>
+          <ControlButton
+            text='Fold'
+            onClick={this.handleFoldClick}
+            intent={isOpener ? 'warning' : undefined}
+          />
+          <ControlButton onClick={this.handlePassiveClick} text={isOpener ? 'Check' : 'Call'}/>
+          <ControlButton onClick={this.handleAggressiveClick} text={isOpener ? 'Bet' : 'Raise'}/>
         </div>
         <div className={styles.betPanel}>
           <InputGroup
