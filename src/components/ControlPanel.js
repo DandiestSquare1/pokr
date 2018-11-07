@@ -39,9 +39,10 @@ class ControlPanel extends Component {
     if (!value.trim()) {
       this.setState({ sliderValue: this.props.min })
     } else {
-      this.setState({
-        sliderValue: Math.min(this.props.max, parseFloat(value, 10))
-      })
+      let value = parseFloat(value, 10)
+      value = Math.min(this.props.max, value)
+      value = Math.max(this.props.min, value)
+      this.setState({ sliderValue: value })
     }
     this.setState({ inputValue: event.currentTarget.value })
   }
